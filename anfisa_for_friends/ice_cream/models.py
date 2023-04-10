@@ -28,6 +28,8 @@ class Wrapper(PublishedModel):
         verbose_name_plural = 'Обёртки'
 
 class IceCream(PublishedModel):
+    price = models.DecimalField(max_digits=5, decimal_places=2)
+    output_order = models.PositiveSmallIntegerField(default=100, verbose_name='Порядок отображения')
     is_on_main = models.BooleanField(default=False, verbose_name='На главную')
     description = models.TextField(verbose_name='Описание')
     wrapper = models.OneToOneField(
@@ -49,3 +51,4 @@ class IceCream(PublishedModel):
     class Meta:
         verbose_name = 'Мороженое'
         verbose_name_plural = 'Мороженое'
+        ordering = ('output_order', 'title')
